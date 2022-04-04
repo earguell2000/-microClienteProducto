@@ -23,13 +23,15 @@ public class ClienteDao implements IClienteDao {
 	@Transactional
 	@Override
 	public Cliente addCliente(Cliente c) {
-//		Query query = entityManager.createNativeQuery(""
-//				+ "insert into cliente (nombre, apellidos, dni, email, numTelefono, direccion) "
-//				+ "values = ('" + c.getNombre() + "', '" + c.getApellidos()
-//				+ "', '" + c.getDni() + "', '" + c.getEmail()
-//				+ "', '" + c.getNumTelefono() + "', '" + c.getDireccion() + "')"
-//				, Cliente.class);
-		Query query = entityManager.createNativeQuery("INSERT INTO Cliente (nombre) VALUES =('edu')", Cliente.class);
+		Query query = entityManager.createNativeQuery(""
+				+ "insert into cliente (nombre, apellidos, dni, email, num_telefono, direccion) "
+				+ "values (?1, ?2, ?3, ?4, ?5,?6)", Cliente.class);
+		query.setParameter(1, c.getNombre());
+		query.setParameter(2, c.getApellidos());
+		query.setParameter(3, c.getDni());
+		query.setParameter(4, c.getEmail());
+		query.setParameter(5, c.getNumTelefono());
+		query.setParameter(6, c.getDireccion());
 		query.executeUpdate();
 		return c;
 	}
@@ -48,16 +50,15 @@ public class ClienteDao implements IClienteDao {
 	@Transactional
 	@Override
 	public Cliente updateCliente(Cliente c) {
-//		Query query = entityManager.createNativeQuery(""
-//				+ "Update Cliente set nombre = '" + c.getNombre() 
-//				+ "', set apellidos = '" + c.getApellidos()
-//				+ "', set dni = '" + c.getDni()
-//				+ "', set direccion = '" + c.getDireccion()
-//				+ "', set numTelefono = '" + c.getNumTelefono()
-//				+ "', set email = '" + c.getEmail()
-//				+ "' where id = ?1", Cliente.class);
-		Query query = entityManager.createNativeQuery("Update cliente set nombre ='joao' where id=?1", Cliente.class);
-		query.setParameter(1, c.getId());
+		Query query = entityManager.createNativeQuery("Update Cliente set nombre = ?1, set apellidos = ?2, set dni = ?3, "
+		+ "set direccion = ?4, set num_telefono = ?5, set email = ?6 where id = ?7", Cliente.class);
+		query.setParameter(1, c.getNombre());
+		query.setParameter(2, c.getApellidos());
+		query.setParameter(3, c.getDni());
+		query.setParameter(4, c.getDireccion());
+		query.setParameter(5, c.getNumTelefono());
+		query.setParameter(6, c.getEmail());
+		query.setParameter(7, c.getId());
 		query.executeUpdate();
 		return c;
 	}
