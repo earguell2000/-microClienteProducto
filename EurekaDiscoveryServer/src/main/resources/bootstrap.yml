@@ -1,0 +1,8 @@
+#Application Name
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    config:
+      uri: http://localhost:8888 #donde se lanza el servicio de configuracion
+      fail-fast: true  #el servicio no correrá si no puede acceder a la configuración del servicio
