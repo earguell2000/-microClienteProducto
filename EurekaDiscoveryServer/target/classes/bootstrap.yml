@@ -1,8 +1,8 @@
 #Application Name
 spring:
   application:
-    name: eureka-server
+    name: eureka-server     # This is the name for the remote configuration file
   cloud:
     config:
-      uri: http://localhost:8888 #donde se lanza el servicio de configuracion
-      fail-fast: true  #el servicio no correrá si no puede acceder a la configuración del servicio
+      uri: http://localhost:8888  #where the config-service is running
+      fail-fast: false             #the service will not run if it can't reach the config-service
