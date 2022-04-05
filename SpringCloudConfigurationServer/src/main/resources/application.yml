@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/earguell2000/-microClienteProducto/tree/develop
+          uri: https://github.com/earguell2000/-microClienteProducto
 
   # Spring properties in case you use different profiles
   profiles:
