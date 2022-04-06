@@ -1,0 +1,17 @@
+#Application Name
+spring:
+  application:
+    name: echo-service     # This is the name for the remote configuration file
+  cloud:
+    config:
+      uri: http://localhost:8888  #where the config-service is running
+      fail-fast: false
+
+logging:
+  level:
+    ROOT: INFO
+    org: 
+      hibernate: DEBUG
+
+
+ 

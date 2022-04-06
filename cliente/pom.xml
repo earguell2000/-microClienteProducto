@@ -2,38 +2,55 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.5</version>
-		<relativePath></relativePath><!-- lookup parent from repository -->
-	</parent>
 	<groupId>com.formacion</groupId>
 	<artifactId>cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cliente</name>
 	<description>Cliente</description>
-	<properties>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.6</version>
+		<relativePath></relativePath><!-- lookup parent from repository -->
+	</parent>	
+	
+	<properties>		
 		<java.version>1.8</java.version>
+		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
 	
 	<dependencies>
+		<!-- Dependency to use a springboot web application capabilities -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+		
+		<!-- Dependency to use a spring cloud config server-->
+	    <dependency>
+	         <groupId>org.springframework.cloud</groupId>
+	         <artifactId>spring-cloud-starter-config</artifactId>
+	    </dependency>
+	    
+	    <!-- Dependency to register the service within Eureka-->
+	    <dependency>
+	        <groupId>org.springframework.cloud</groupId>
+	        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+	    </dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	    
+	    <dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-bootstrap</artifactId>
+		</dependency>
 		
+		<!-- JUnit Tests -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -51,12 +68,26 @@
 			</exclusions>
 		</dependency>
 		
+		<!-- Database -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- Logger -->
 		<dependency>
 			<groupId>org.owasp.esapi</groupId>
 			<artifactId>esapi</artifactId>
 			<version>2.2.0.0</version>
 		</dependency>
 		
+		<!-- Documentation -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -74,16 +105,22 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		
-		
-		
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
-		
 	</dependencies>
+	
+	<!-- Dependency Management -->
+	<dependencyManagement>
+	  <dependencies>
+	      <dependency>
+	          <groupId>org.springframework.cloud</groupId>
+	          <artifactId>spring-cloud-dependencies</artifactId>
+	          <version>${spring-cloud.version}</version>
+	          <type>pom</type>
+	          <scope>import</scope>
+	      </dependency>
+	  </dependencies>
+	</dependencyManagement>
 
+	<!-- Maven Plugin to build spring boot applications -->
 	<build>
 		<plugins>
 			<plugin>
