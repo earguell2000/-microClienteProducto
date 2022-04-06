@@ -12,6 +12,3 @@ logging:
     ROOT: INFO
     org: 
       hibernate: DEBUG
-
-
- 
