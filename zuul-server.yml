@@ -13,3 +13,5 @@ zuul:
       echo-service:
         path: /echo/**
         url: http://localhost:8091
+      docker:
+        url: http://localhost:5432
