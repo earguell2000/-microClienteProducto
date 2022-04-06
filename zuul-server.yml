@@ -14,4 +14,4 @@ zuul:
         path: /echo/**
         url: http://localhost:8091
       docker:
-        url: http://localhost:5432
+        url: jdbc:postgresql://localhost:5432/postgres
