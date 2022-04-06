@@ -7,6 +7,9 @@ server:
 zuul:
   ignoredServices: '*'
     routes:
+      cliente-service:
+        path: /api/clientes/**
+        url: http://localhost:8092
       echo-service:
         path: /echo/**
         url: http://localhost:8091
